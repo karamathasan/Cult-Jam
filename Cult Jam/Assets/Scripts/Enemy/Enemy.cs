@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    internal EnemySensor sensor;
+    [SerializeField]
+    internal EnemyTestFSM fsm;
+    [SerializeField]
+    internal EnemyActions actions;
+    [SerializeField]
+    internal EnemyStats stats;
 }

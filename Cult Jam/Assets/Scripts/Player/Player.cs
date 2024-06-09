@@ -8,14 +8,4 @@ public class Player : MonoBehaviour
     internal PlayerInput input;
     [SerializeField]
     internal PlayerMovement movement;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
