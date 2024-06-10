@@ -6,6 +6,8 @@ public class EnemyTestFSM : FiniteStateMachine
 {
     [SerializeField]
     internal Enemy enemy;
+    [SerializeField]
+    public Vector2[] wayPoints;
 
     void Start()
     {

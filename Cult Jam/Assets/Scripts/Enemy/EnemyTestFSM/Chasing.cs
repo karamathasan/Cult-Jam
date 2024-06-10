@@ -6,25 +6,34 @@ public class Chasing : State
 {
     //[SerializeField]
     private Enemy enemy;
-    private FiniteStateMachine fsm;    
+    private FiniteStateMachine fsm;
+    //private bool beginChase = false;
+    private float timer;
 
     public Chasing(Enemy enemy)
     {
         this.enemy = enemy;
     }
+
     public override void Init()
     {
         Debug.Log("Chasing Init");
+        timer = 0.7f;
     }
 
     public override void Execute()
     {
-        enemy.actions.walk(enemy.sensor.directionToPlayer());
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            return;
+        }
+        enemy.actions.run(enemy.sensor.directionToPlayer());
     }
 
     public override State Next()
     {
-        if (enemy.sensor.distToPlayer() > 2f)
+        if (!enemy.sensor.playerInSight())
         {
             return new Patrolling(enemy);
         }

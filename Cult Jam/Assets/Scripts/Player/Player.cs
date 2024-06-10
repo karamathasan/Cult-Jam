@@ -8,4 +8,10 @@ public class Player : MonoBehaviour
     internal PlayerInput input;
     [SerializeField]
     internal PlayerMovement movement;
+    [SerializeField]
+    internal PlayerAnimator anim;
+    [SerializeField]
+    internal PlayerWorldSounds worldSounds;
+    [SerializeField]
+    internal PlayerInteract interactor;
 }

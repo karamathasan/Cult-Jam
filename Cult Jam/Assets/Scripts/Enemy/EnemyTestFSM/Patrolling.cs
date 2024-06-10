@@ -4,27 +4,39 @@ using UnityEngine;
 
 public class Patrolling : State
 {
-    private FiniteStateMachine fsm;
+    private EnemyTestFSM fsm;
     private Enemy enemy;
+    private Vector2[] waypoints;
+    private int waypointIndex = 0;
+    
     public Patrolling(Enemy enemy)
     {
         this.enemy = enemy;
         fsm = enemy.fsm;
+        waypoints = fsm.wayPoints;
     }
 
     public override void Init()
     {
         Debug.Log("Patrolling Init");
+        enemy.transform.right = waypoints[waypointIndex] - (Vector2)enemy.transform.position;
+
     }
 
     public override void Execute()
     {
-         
+        enemy.actions.walkToPoint(waypoints[waypointIndex]);
+        if ((Vector2)enemy.transform.position == waypoints[waypointIndex])
+        {
+            waypointIndex++;
+            waypointIndex = waypointIndex % waypoints.Length;
+            enemy.transform.right = waypoints[waypointIndex] - (Vector2)enemy.transform.position;
+        }
     }
 
     public override State Next()
     {
-        if (enemy.sensor.distToPlayer() < 1)
+        if (enemy.sensor.playerInSight())
         {
             return new Chasing(enemy);
         }

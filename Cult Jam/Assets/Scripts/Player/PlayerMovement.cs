@@ -56,6 +56,10 @@ public class PlayerMovement : MonoBehaviour
             direction += Vector2.right;
         }
         direction.Normalize();
+        if (direction != Vector2.zero)
+        {
+            player.worldSounds.Footsteps(3);
+        }
 
         Vector2 velocityError = walkSpeed * direction - rb.velocity;
         rb.AddForce(velocityError);
@@ -81,6 +85,10 @@ public class PlayerMovement : MonoBehaviour
             direction += Vector2.right;
         }
         direction.Normalize();
+        if (direction != Vector2.zero)
+        {
+            player.worldSounds.Footsteps(12);
+        }
 
         Vector2 velocityError = runSpeed * direction - rb.velocity;
         rb.AddForce( 2 * velocityError);
@@ -106,6 +114,10 @@ public class PlayerMovement : MonoBehaviour
             direction += Vector2.right;
         }
         direction.Normalize();
+        if (direction != Vector2.zero)
+        {
+            player.worldSounds.Footsteps(1.5f);
+        }
 
         Vector2 velocityError = sneakSpeed * direction - rb.velocity;
         rb.AddForce(velocityError);
