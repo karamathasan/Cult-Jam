@@ -41,8 +41,12 @@ public class EnemyActions : MonoBehaviour
     {
         float maxDelta = enemy.stats.walkSpeed * Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, pos, maxDelta);
+        enemy.transform.right = pos - (Vector2)enemy.transform.position;
+
     }
 
+    //public void 
+
     // sneak
-    
+
 }

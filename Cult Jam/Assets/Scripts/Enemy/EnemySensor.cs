@@ -10,11 +10,33 @@ public class EnemySensor : MonoBehaviour, WorldSoundListener
     [SerializeField]
     internal Light2D Light;
     [SerializeField]
-    float detectionDistance = 5;
+    float detectionDistance = 12;
     [SerializeField]
     float halfFovDegrees = 30;
 
+    internal Vector2 latestSound;
+    internal bool latestSoundRemembered;
+    float latestSoundTimer;
+
+    void Update()
+    {
+        if (latestSoundTimer > 0)
+        {
+            latestSoundTimer -= Time.deltaTime;
+        }
+        if (latestSoundTimer < 0)
+        {
+            latestSoundRemembered = false;
+        }
+    }
+
     //player heard
+    public void Respond(WorldSound sound)
+    {
+        latestSound = sound.getPosition();
+        latestSoundRemembered = true;
+        latestSoundTimer = 7;
+    }
 
     //player seen
     public bool playerInSight()
@@ -66,9 +88,6 @@ public class EnemySensor : MonoBehaviour, WorldSoundListener
         return (player.transform.position - transform.position).normalized;
     }
 
-    public void Respond(WorldSound sound)
-    {
-        Debug.Log("Sound heard");
-    }
+
 
 }

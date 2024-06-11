@@ -40,6 +40,10 @@ public class Patrolling : State
         {
             return new Chasing(enemy);
         }
+        else if (enemy.sensor.latestSoundRemembered)
+        {
+            return new Curious(enemy);
+        }
         else return null;
     }
 

@@ -17,8 +17,8 @@ public class Chasing : State
 
     public override void Init()
     {
-        Debug.Log("Chasing Init");
-        timer = 0.7f;
+        //Debug.Log("Chasing Init");
+        timer = 0.5f;
     }
 
     public override void Execute()
@@ -35,7 +35,7 @@ public class Chasing : State
     {
         if (!enemy.sensor.playerInSight())
         {
-            return new Patrolling(enemy);
+            return new Curious(enemy);
         }
         return null;
     }
