@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Evidence : Interactable
+public class MapExit : Interactable
 {
     public override void interact()
     {
         PlayerStats s = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-        s.EvidenceFound();
-        //Debug.Log("Evidence Collected");
-        Destroy(gameObject);
-    }   
+        if (s.isEvidenceFound)
+        {
+            Debug.Log("Exit");
+            //Scene transition
+        }
+    }
 }

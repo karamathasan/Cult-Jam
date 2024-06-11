@@ -35,6 +35,5 @@ public class PlayerInteract : MonoBehaviour
                 closest.interact();
             }
         }
-        
     }
 }

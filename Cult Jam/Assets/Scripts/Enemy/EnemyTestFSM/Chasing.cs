@@ -9,6 +9,7 @@ public class Chasing : State
     private FiniteStateMachine fsm;
     //private bool beginChase = false;
     private float timer;
+    private Vector2 lastSeen;
 
     public Chasing(Enemy enemy)
     {
@@ -29,13 +30,15 @@ public class Chasing : State
             return;
         }
         enemy.actions.run(enemy.sensor.directionToPlayer());
+        //if ()
+        lastSeen = enemy.sensor.getPlayerPosition();
     }
 
     public override State Next()
     {
         if (!enemy.sensor.playerInSight())
         {
-            return new Curious(enemy);
+            return new Searching(enemy, lastSeen);
         }
         return null;
     }

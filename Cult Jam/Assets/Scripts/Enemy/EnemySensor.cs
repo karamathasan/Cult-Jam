@@ -50,6 +50,12 @@ public class EnemySensor : MonoBehaviour, WorldSoundListener
         return false;
     }
 
+    public Vector2 getPlayerPosition()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        return player.transform.position;
+    }
+
     private void OnDrawGizmos()
     {
         Vector2 pos = transform.position;
