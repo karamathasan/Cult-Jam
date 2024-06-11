@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
@@ -17,13 +18,21 @@ public class PlayerInteract : MonoBehaviour
     {
         if (player.input.interact())
         {
-            Collider2D[] cols = Physics2D.OverlapCircleAll(player.transform.position, detectionRadius);
-            foreach(Collider2D col in cols)
+            Interactable[] interactables = FindObjectsOfType<Interactable>();
+            Interactable closest = interactables[0];
+            float minDist = float.MaxValue;
+            foreach (Interactable e in interactables)
             {
-                if(col.TryGetComponent(out Interactable interactable))
+                float currentDist = Vector2.Distance(transform.position, e.transform.position);
+                if (currentDist < minDist)
                 {
-                    interactable.interact();
+                    minDist = currentDist;
+                    closest = e;
                 }
+            }
+            if (minDist < detectionRadius)
+            {
+                closest.interact();
             }
         }
         

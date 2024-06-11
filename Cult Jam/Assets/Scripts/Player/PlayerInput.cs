@@ -39,6 +39,6 @@ public class PlayerInput : MonoBehaviour
 
     public bool interact()
     {
-        return Input.GetKeyDown("e");
+        return Input.GetKeyDown(KeyCode.E);
     }
 }

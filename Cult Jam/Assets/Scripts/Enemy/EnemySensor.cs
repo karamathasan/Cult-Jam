@@ -44,7 +44,7 @@ public class EnemySensor : MonoBehaviour, WorldSoundListener
         float directionDiff = Vector2.Angle(transform.right, directionToPlayer());
         if (distToPlayer() < detectionDistance && directionDiff < halfFovDegrees)
         {
-            Debug.Log("Player in sight");
+            //Debug.Log("Player in sight");
             return true;
         }
         return false;
