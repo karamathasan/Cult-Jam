@@ -10,13 +10,18 @@ public class EnemySensor : MonoBehaviour, WorldSoundListener
     [SerializeField]
     internal Light2D Light;
     [SerializeField]
-    float detectionDistance = 12;
+    float detectionDistance = 15;
     [SerializeField]
     float halfFovDegrees = 30;
 
     internal Vector2 latestSound;
     internal bool latestSoundRemembered;
     float latestSoundTimer;
+
+    void Start()
+    {
+        Light.enabled = false;
+    }
 
     void Update()
     {
@@ -44,8 +49,11 @@ public class EnemySensor : MonoBehaviour, WorldSoundListener
         float directionDiff = Vector2.Angle(transform.right, directionToPlayer());
         if (distToPlayer() < detectionDistance && directionDiff < halfFovDegrees)
         {
-            //Debug.Log("Player in sight");
-            return true;
+            Collider2D col = Physics2D.Raycast((Vector2)transform.position + directionToPlayer(), directionToPlayer()).collider;
+            if(col.GetComponentInParent<Player>())
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -92,6 +100,23 @@ public class EnemySensor : MonoBehaviour, WorldSoundListener
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         return (player.transform.position - transform.position).normalized;
+    }
+
+    public IEnumerator exposePlayer()
+    {
+        //Light.pointLightInnerAngle = halfFovDegrees;
+        Light.pointLightOuterAngle = 2 * halfFovDegrees;
+        Light.pointLightOuterRadius = 30;
+        //Light.transform.right = -transform.right;
+        Light.enabled = true;
+        Light.intensity = 6;
+        while (Light.intensity > 0)
+        {
+            yield return new WaitForSeconds(0.05f);
+            Light.intensity -= 0.2f;
+        }
+        Light.enabled = false;
+        //Light.transform.rotation = transform.rotation;
     }
 
 

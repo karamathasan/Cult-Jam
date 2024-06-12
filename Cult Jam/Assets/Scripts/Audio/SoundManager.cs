@@ -18,7 +18,7 @@ public class SoundManager : MonoBehaviour
         else Destroy(this);
     }
 
-    void playSound(AudioClip clip, Transform soundTransform, float volume)
+    public void playSound(AudioClip clip, Transform soundTransform, float volume)
     {
         AudioSource source = Instantiate(SFX, soundTransform);
         source.clip = clip;
@@ -26,7 +26,6 @@ public class SoundManager : MonoBehaviour
         source.spatialBlend = 1;
         float length = source.clip.length;
         source.Play();
-        Destroy(source, length);
-
+        Destroy(source.gameObject, length);
     }
 }

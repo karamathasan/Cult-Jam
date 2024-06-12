@@ -10,18 +10,24 @@ public class Searching : State
     {
         this.lastSeen = lastSeen;
         this.enemy = enemy;
+        name = "searching";
     }
 
-    public override void Init()
-    {
-    }
+    public override void Init() { }
+
     public override void Execute()
     {
+        //enemy.transform.right = 
         enemy.actions.walkToPoint(lastSeen);
     }
+
     public override State Next()
     {
-        if ((Vector2)enemy.transform.position == lastSeen)
+        if (enemy.sensor.playerInSight())
+        {
+            return new Chasing(enemy);
+        }
+        else if ((Vector2)enemy.transform.position == lastSeen)
         {
             return new Curious(enemy);
         }

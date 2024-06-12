@@ -15,5 +15,15 @@ public class PlayerStats : MonoBehaviour
         isEvidenceFound = true;
     }
 
+    public void takeDamage(float damage)
+    {
+        health -= damage;
+        //player.movement.rb.AddForce();
+        if (health <= 0)
+        {
+            Debug.Log("Death");
+        }
+    }
+
 
 }

@@ -12,7 +12,7 @@ public class Door : Interactable
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision");
+        //Debug.Log("Collision");
         PlayerInput input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         if (input.shift())
         {

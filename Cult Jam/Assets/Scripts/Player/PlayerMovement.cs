@@ -59,6 +59,11 @@ public class PlayerMovement : MonoBehaviour
         if (direction != Vector2.zero)
         {
             player.worldSounds.Footsteps(3);
+            AudioClip clip = player.sounds.getRandomWalkAudio();
+            if (Time.frameCount % (Application.targetFrameRate * 64) == 0)
+            {
+                SoundManager.instance.playSound(clip, transform, 0.1f);
+            }
         }
 
         Vector2 velocityError = walkSpeed * direction - rb.velocity;
@@ -85,13 +90,20 @@ public class PlayerMovement : MonoBehaviour
             direction += Vector2.right;
         }
         direction.Normalize();
-        if (direction != Vector2.zero)
+        if (direction != Vector2.zero) 
         {
             player.worldSounds.Footsteps(12);
+            AudioClip clip = player.sounds.getRandomRunAudio();
+            if (Time.frameCount % (Application.targetFrameRate * 48) == 0)
+            {
+                SoundManager.instance.playSound(clip, transform, 0.25f);
+            }
         }
 
         Vector2 velocityError = runSpeed * direction - rb.velocity;
         rb.AddForce( 2 * velocityError);
+
+
     }
 
     void Sneak()

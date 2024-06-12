@@ -7,19 +7,20 @@ public class Chasing : State
     //[SerializeField]
     private Enemy enemy;
     private FiniteStateMachine fsm;
-    //private bool beginChase = false;
+
     private float timer;
     private Vector2 lastSeen;
 
     public Chasing(Enemy enemy)
     {
         this.enemy = enemy;
+        name = "chasing";
     }
 
     public override void Init()
     {
-        //Debug.Log("Chasing Init");
         timer = 0.5f;
+        enemy.actions.StartCoroutine(enemy.sensor.exposePlayer());
     }
 
     public override void Execute()
@@ -30,8 +31,14 @@ public class Chasing : State
             return;
         }
         enemy.actions.run(enemy.sensor.directionToPlayer());
-        //if ()
-        lastSeen = enemy.sensor.getPlayerPosition();
+        if (enemy.sensor.distToPlayer() < 1.5f)
+        {
+            enemy.actions.attack();
+        }
+        if (enemy.sensor.playerInSight())
+        {
+            lastSeen = enemy.sensor.getPlayerPosition();
+        }
     }
 
     public override State Next()

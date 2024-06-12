@@ -12,4 +12,6 @@ public class Enemy : MonoBehaviour
     internal EnemyActions actions;
     [SerializeField]
     internal EnemyStats stats;
+    [SerializeField]
+    internal EnemySounds sounds;
 }

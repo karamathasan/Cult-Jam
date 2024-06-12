@@ -14,6 +14,7 @@ public class Curious : State
     {
         this.enemy = enemy;
         this.fsm = enemy.fsm;
+        name = "curious";
     }
 
     public override void Init()

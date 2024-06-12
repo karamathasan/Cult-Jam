@@ -7,7 +7,7 @@ public class LockedDoor : Door
     [SerializeField]
     int doorID;
     bool doorOpen = false;
-    public void OnCollisionEnter2D(Collision2D collision)
+    public override void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision");
         WorldSound sound = new WorldSound(transform.position, 5);

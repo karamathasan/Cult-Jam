@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     internal PlayerWorldSounds worldSounds;
     [SerializeField]
+    internal PlayerSounds sounds;
+    [SerializeField]
     internal PlayerInteract interactor;
     [SerializeField]
     internal PlayerStats stats;

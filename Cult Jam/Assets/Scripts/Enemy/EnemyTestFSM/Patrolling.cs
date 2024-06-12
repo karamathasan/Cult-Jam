@@ -14,13 +14,12 @@ public class Patrolling : State
         this.enemy = enemy;
         fsm = enemy.fsm;
         waypoints = fsm.wayPoints;
+        name = "patrolling";
     }
 
     public override void Init()
     {
-        Debug.Log("Patrolling Init");
         enemy.transform.right = waypoints[waypointIndex] - (Vector2)enemy.transform.position;
-
     }
 
     public override void Execute()
@@ -46,6 +45,4 @@ public class Patrolling : State
         }
         else return null;
     }
-
-
 }

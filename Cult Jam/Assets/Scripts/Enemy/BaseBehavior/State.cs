@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class State
 {
+    public string name;
     FiniteStateMachine fsm;
     public abstract void Init();
     public abstract void Execute();
