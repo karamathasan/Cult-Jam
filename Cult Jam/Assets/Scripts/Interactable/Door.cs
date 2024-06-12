@@ -6,24 +6,35 @@ using UnityEngine.Tilemaps;
 public class Door : Interactable
 {
     [SerializeField]
-    TilemapCollider2D TileCollider;
+    protected TilemapCollider2D TileCollider;
     [SerializeField]
-    TilemapRenderer tr;
+    protected TilemapRenderer tr;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        PlayerMovement mov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
-        if (mov.rb.velocity.magnitude > mov.runSpeed - 1)
+        Debug.Log("Collision");
+        PlayerInput input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        if (input.shift())
         {
-            interact();
+            OpenDoor();
+            WorldSound sound = new WorldSound(transform.position, 35);
+        }
+        else if (!input.ctrl())
+        {
+            WorldSound sound = new WorldSound(transform.position, 7);
         }
     }
 
     public override void interact()
     {
+        OpenDoor();
+        WorldSound sound = new WorldSound(transform.position, 25);
+    }
+
+    public void OpenDoor()
+    {
         Debug.Log(name + " opened");
         TileCollider.enabled = !(TileCollider.enabled);
         tr.enabled = !tr.enabled;
-        WorldSound sound = new WorldSound(transform.position, 25);
     }
 }

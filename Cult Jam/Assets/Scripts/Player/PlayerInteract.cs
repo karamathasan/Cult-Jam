@@ -9,6 +9,8 @@ public class PlayerInteract : MonoBehaviour
     internal Player player;
     [SerializeField]
     float detectionRadius = 1;
+    public List<Key> keys;
+    public List<int> keyIDs;
 
     private void Update()
     {
