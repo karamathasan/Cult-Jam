@@ -18,4 +18,6 @@ public class Player : MonoBehaviour
     internal PlayerInteract interactor;
     [SerializeField]
     internal PlayerStats stats;
+    [SerializeField]
+    internal PlayerSpeech speech;
 }

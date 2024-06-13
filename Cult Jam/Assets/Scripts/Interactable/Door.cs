@@ -12,7 +12,6 @@ public class Door : Interactable
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        //Debug.Log("Collision");
         PlayerInput input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         if (input.shift())
         {
@@ -21,6 +20,7 @@ public class Door : Interactable
         }
         else if (!input.ctrl())
         {
+            //bumping into the door makes noise
             WorldSound sound = new WorldSound(transform.position, 7);
         }
     }
