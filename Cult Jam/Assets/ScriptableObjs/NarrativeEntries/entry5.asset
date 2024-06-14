@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4b887c8669ed44280543905b1ad234, type: 3}
+  m_Name: entry5
+  m_EditorClassIdentifier: 
+  month: September
+  day: 15
+  hour: 3
+  minute: 55
+  body: Its very strange, but I couldn't sleep tonight. The look on the man from
+    yesterday kept me wondering what could possibly be wrong with The People's Truth.
+    They have a local church that I live across from. When I looked out my window,
+    I noticed what seemed to be a group of police officers leave the church.

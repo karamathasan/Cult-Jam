@@ -27,13 +27,29 @@ public class Door : Interactable
 
     public override void interact()
     {
-        OpenDoor();
-        WorldSound sound = new WorldSound(transform.position, 25);
+        PlayerInput input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        if (input.ctrl())
+        {
+            StartCoroutine(DelayOpen(1.25f));
+            WorldSound sound = new WorldSound(transform.position, 2);
+        }
+        else
+        {
+            StartCoroutine(DelayOpen(0.5f));
+            new WorldSound(transform.position, 12);
+        }
     }
 
     public void OpenDoor()
     {
         Debug.Log(name + " opened");
+        TileCollider.enabled = !(TileCollider.enabled);
+        tr.enabled = !tr.enabled;
+    }
+
+    IEnumerator DelayOpen(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         TileCollider.enabled = !(TileCollider.enabled);
         tr.enabled = !tr.enabled;
     }

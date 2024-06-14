@@ -21,7 +21,6 @@ public class Curious : State
     {
         memoryTimer = 2.5f;
         startupTimer = 0.5f;
-
     }
 
     public override void Execute()
@@ -31,7 +30,7 @@ public class Curious : State
             startupTimer -= Time.deltaTime;
             return;
         }
-        if (memoryTimer > 0)
+        if (memoryTimer > 0 && startupTimer <= 0)
         {
             memoryTimer -= Time.deltaTime;
         }

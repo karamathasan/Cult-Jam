@@ -7,7 +7,7 @@ public class PlayerSpeech : MonoBehaviour
     [SerializeField]
     internal Player player;
 
-    void speak(string speech)
+    public void speak(string speech)
     {
         Debug.Log(speech);
     }

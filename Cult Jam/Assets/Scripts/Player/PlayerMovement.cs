@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             AudioClip clip = player.sounds.getRandomWalkAudio();
             if (Time.frameCount % (Application.targetFrameRate * 64) == 0)
             {
-                SoundManager.instance.playSound(clip, transform, 0.1f);
+                SoundManager.instance.playSound(clip, transform.position, 0.1f);
             }
         }
 
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             AudioClip clip = player.sounds.getRandomRunAudio();
             if (Time.frameCount % (Application.targetFrameRate * 48) == 0)
             {
-                SoundManager.instance.playSound(clip, transform, 0.25f);
+                SoundManager.instance.playSound(clip, transform.position, 0.25f);
             }
         }
 

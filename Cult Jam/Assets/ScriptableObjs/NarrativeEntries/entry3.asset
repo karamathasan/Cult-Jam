@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4b887c8669ed44280543905b1ad234, type: 3}
+  m_Name: entry3
+  m_EditorClassIdentifier: 
+  month: September
+  day: 13
+  hour: 20
+  minute: 06
+  body: After some asking around, it seems they will let me join their cause.  I
+    decided to look into them a little further on the internet, but I can't seem
+    to find on them, besides their leader, Dr. Haligman. The Doctor has some very
+    notable contributions to the medical field.

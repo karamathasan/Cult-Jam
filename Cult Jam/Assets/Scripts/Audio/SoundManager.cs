@@ -18,9 +18,9 @@ public class SoundManager : MonoBehaviour
         else Destroy(this);
     }
 
-    public void playSound(AudioClip clip, Transform soundTransform, float volume)
+    public void playSound(AudioClip clip, Vector2 position, float volume)
     {
-        AudioSource source = Instantiate(SFX, soundTransform);
+        AudioSource source = Instantiate(SFX, position, Quaternion.identity);
         source.clip = clip;
         source.volume = volume;
         source.spatialBlend = 1;

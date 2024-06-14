@@ -119,6 +119,8 @@ public class EnemySensor : MonoBehaviour, WorldSoundListener
         //Light.transform.rotation = transform.rotation;
     }
 
-
-
+    public float getDetectionDistance()
+    {
+        return detectionDistance;
+    }
 }

@@ -47,7 +47,7 @@ public class EnemyActions : MonoBehaviour
         AudioClip clip = enemy.sounds.getRandomRunAudio();
         if (Time.frameCount % (Application.targetFrameRate * 32) == 0)
         {
-            SoundManager.instance.playSound(clip, transform, 10);
+            SoundManager.instance.playSound(clip, transform.position, 10);
         }
     }
 
@@ -68,7 +68,7 @@ public class EnemyActions : MonoBehaviour
         AudioClip clip = enemy.sounds.getRandomWalkAudio();
         if(Time.frameCount % (Application.targetFrameRate * 128) == 0)
         {
-            SoundManager.instance.playSound(clip, transform, 10);
+            SoundManager.instance.playSound(clip, transform.position, 10);
         }
     }
 }

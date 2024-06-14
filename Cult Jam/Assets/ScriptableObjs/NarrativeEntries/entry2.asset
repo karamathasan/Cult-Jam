@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4b887c8669ed44280543905b1ad234, type: 3}
+  m_Name: entry2
+  m_EditorClassIdentifier: 
+  month: September
+  day: 13
+  hour: 9
+  minute: 35
+  body: I might finally have a topic to investigate in the town. The People's Truth
+    is an organization thats been here since my childhood, and they regularly help
+    the townsfolk with food, medicine and education. But I've never understood how
+    they do it, and I think the town will grow to appreciate them more if I do this.
