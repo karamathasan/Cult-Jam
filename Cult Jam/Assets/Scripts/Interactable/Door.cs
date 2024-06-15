@@ -9,6 +9,14 @@ public class Door : Interactable
     protected TilemapCollider2D TileCollider;
     [SerializeField]
     protected TilemapRenderer tr;
+    [SerializeField]
+    protected DoorSounds sounds;
+
+    private void Start()
+    {
+        detectionRadius = 2.5f;
+    }
+
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -17,11 +25,13 @@ public class Door : Interactable
         {
             OpenDoor();
             WorldSound sound = new WorldSound(transform.position, 35);
+            SoundManager.instance.playSound(sounds.getRandomDoorSlam(), transform.position, 1);
         }
         else if (!input.ctrl())
         {
             //bumping into the door makes noise
             WorldSound sound = new WorldSound(transform.position, 7);
+            SoundManager.instance.playSound(sounds.getRandomDoorBump(), transform.position, 1);
         }
     }
 
@@ -30,11 +40,14 @@ public class Door : Interactable
         PlayerInput input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         if (input.ctrl())
         {
+            SoundManager.instance.playSound(sounds.getRandomDoorOpenSoft(), transform.position, 1);
             StartCoroutine(DelayOpen(1.25f));
             WorldSound sound = new WorldSound(transform.position, 2);
+
         }
         else
         {
+            SoundManager.instance.playSound(sounds.getRandomDoorOpen(), transform.position, 1);
             StartCoroutine(DelayOpen(0.5f));
             new WorldSound(transform.position, 12);
         }
@@ -42,15 +55,19 @@ public class Door : Interactable
 
     public void OpenDoor()
     {
-        Debug.Log(name + " opened");
         TileCollider.enabled = !(TileCollider.enabled);
         tr.enabled = !tr.enabled;
     }
 
-    IEnumerator DelayOpen(float delay)
+    public IEnumerator DelayOpen(float delay)
     {
         yield return new WaitForSeconds(delay);
         TileCollider.enabled = !(TileCollider.enabled);
         tr.enabled = !tr.enabled;
+    }
+
+    public override Vector2 getPosition()
+    {
+        return (Vector2)transform.position + new Vector2(0, 1.5f);
     }
 }

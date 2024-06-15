@@ -25,11 +25,8 @@ public class EnemyActions : MonoBehaviour
         
     }
 
-    // chase player
-
     // pathfind to player
 
-    // walk
     public void walk(Vector2 direction)
     {
         direction.Normalize();

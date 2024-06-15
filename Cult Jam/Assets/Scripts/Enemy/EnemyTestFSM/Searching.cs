@@ -8,6 +8,7 @@ public class Searching : State
 {
     Vector2 lastSeen;
     Enemy enemy;
+    float timer;
     public Searching(Enemy enemy, Vector2 lastSeen)
     {
         this.lastSeen = lastSeen;
@@ -30,7 +31,6 @@ public class Searching : State
     {
         //enemy.transform.right = 
         enemy.actions.walkToPoint(lastSeen);
-
     }
 
     public override State Next()

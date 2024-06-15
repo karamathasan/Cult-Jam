@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1322534549955834863}
   - component: {fileID: 1322534549955834856}
   - component: {fileID: 1322534549955834857}
+  - component: {fileID: 6911696604182039343}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -256,6 +257,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TileCollider: {fileID: 1322534549955834856}
   tr: {fileID: 1322534549955834863}
+  sounds: {fileID: 6911696604182039343}
+--- !u!114 &6911696604182039343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322534549955834861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc2847ef5c3696c4a94b4a7493e4aebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoorSlam:
+  - {fileID: 8300000, guid: f7fea3c5071c0324a9f8ccc0f5e91ea1, type: 3}
+  - {fileID: 8300000, guid: 11d45f0b6112d434691e536e140e7a51, type: 3}
+  - {fileID: 8300000, guid: 58d9731c28000ea458c700ae0acfefce, type: 3}
+  - {fileID: 8300000, guid: d545500ae59678542be232f8ee6bcb7f, type: 3}
+  - {fileID: 8300000, guid: 1478a43ea5c60874b950488231d3c578, type: 3}
+  DoorOpenSoft:
+  - {fileID: 8300000, guid: 08a2af2dcb39a494ab38f0a4e09f7f40, type: 3}
+  - {fileID: 8300000, guid: 9bbc4dc2ae1b46748854f25a02228baa, type: 3}
+  - {fileID: 8300000, guid: c028481be41393d428943598bdaba899, type: 3}
+  - {fileID: 8300000, guid: 03a35a6c2a3d81b4e8e4eb3467e3eb92, type: 3}
+  - {fileID: 8300000, guid: e70f074207dc60843974bc6640259072, type: 3}
+  - {fileID: 8300000, guid: ecfdf3daf6d8d354bbfbc44cd67f02c9, type: 3}
+  - {fileID: 8300000, guid: 2024f74f6b7adca498b98c4bd9b02f99, type: 3}
+  DoorOpen:
+  - {fileID: 8300000, guid: 753f0cff83fc5514288aad0cc7863d95, type: 3}
+  - {fileID: 8300000, guid: 00af3f334c6864447a14f42a60f7207b, type: 3}
+  - {fileID: 8300000, guid: b2bafc28ed97f134cb72e47e3bb5f58d, type: 3}
+  - {fileID: 8300000, guid: 54970745b51d72a489136aeb23bcbfbe, type: 3}
+  - {fileID: 8300000, guid: d6687a22124c15f498ffc50c079af505, type: 3}
+  DoorBump:
+  - {fileID: 8300000, guid: 505561d73d63306438c9d9a166dd76f9, type: 3}
+  - {fileID: 8300000, guid: d886a03d9bee53e4f829e705a3630e81, type: 3}
+  - {fileID: 8300000, guid: 3561515f7bd901844a612006c423b0f9, type: 3}
+  - {fileID: 8300000, guid: b88615ff9dcbeb4459c51e2132dcdb1e, type: 3}
+  - {fileID: 8300000, guid: 8a8ab81cfe61b5b4c816ed5a465d1bec, type: 3}
+  - {fileID: 8300000, guid: cee17c3511a68d146b1c241235ca6bf3, type: 3}
+  - {fileID: 8300000, guid: 6c2bfc4c3344013409f3c383d76cd14d, type: 3}
+  DoorClose:
+  - {fileID: 8300000, guid: 7c51819dc9183694b9b4a784ab3d57d6, type: 3}
+  - {fileID: 8300000, guid: de988258c212e664e9671ca9503c8562, type: 3}
+  - {fileID: 8300000, guid: 27d01eb88c3e466488939f2cdc177857, type: 3}
 --- !u!1 &1322534551668568873
 GameObject:
   m_ObjectHideFlags: 0

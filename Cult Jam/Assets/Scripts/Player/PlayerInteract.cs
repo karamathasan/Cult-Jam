@@ -8,7 +8,6 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     internal Player player;
     [SerializeField]
-    float detectionRadius = 1;
     public List<Key> keys;
     public List<int> keyIDs;
 
@@ -25,14 +24,14 @@ public class PlayerInteract : MonoBehaviour
             float minDist = float.MaxValue;
             foreach (Interactable e in interactables)
             {
-                float currentDist = Vector2.Distance(transform.position, e.transform.position);
+                float currentDist = Vector2.Distance(transform.position, e.getPosition());
                 if (currentDist < minDist)
                 {
                     minDist = currentDist;
                     closest = e;
                 }
             }
-            if (minDist < detectionRadius)
+            if (closest.inRange(transform.position))
             {
                 closest.interact();
             }
