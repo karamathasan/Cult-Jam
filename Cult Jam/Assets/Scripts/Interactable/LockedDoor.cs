@@ -53,9 +53,11 @@ public class LockedDoor : Door
 
     public override void interact()
     {
+        Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        PlayerInput input = player.input;
+        PlayerInteract interactor = player.interactor;
         if (!doorLocked)
         {
-            PlayerInput input = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
             if (input.ctrl())
             {
                 SoundManager.instance.playSound(sounds.getRandomDoorOpenSoft(), transform.position, 1);
@@ -70,9 +72,14 @@ public class LockedDoor : Door
                 new WorldSound(transform.position, 12);
             }
         }
+        else if (!(interactor.keyIDs.Contains(doorID) && !doorOpen))
+        {
+            //SoundManager.instance.playSound(sounds.getRandomDoorLocked())
+            player.speech.speak("It's locked, I need the key");
+            // add locked door sounds here
+        }
         
-        PlayerInteract I = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInteract>();
-        if (I.keyIDs.Contains(doorID) && !doorOpen && doorLocked)
+        if (interactor.keyIDs.Contains(doorID) && !doorOpen && doorLocked)
         {
             Unlock();
         }

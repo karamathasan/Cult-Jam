@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Searching : State
 {
     Vector2 lastSeen;
     Enemy enemy;
-    float timer;
+    float searchTimer;
     public Searching(Enemy enemy, Vector2 lastSeen)
     {
         this.lastSeen = lastSeen;
@@ -25,11 +25,16 @@ public class Searching : State
         {
             lastSeen = col.transform.position;
         }
+        searchTimer = 5f;
     }
 
     public override void Execute()
     {
         //enemy.transform.right = 
+        if (searchTimer > 0)
+        {
+            searchTimer -= Time.deltaTime;
+        }
         enemy.actions.walkToPoint(lastSeen);
     }
 
@@ -42,6 +47,10 @@ public class Searching : State
         else if ((Vector2)enemy.transform.position == lastSeen)
         {
             return new Curious(enemy);
+        }
+        else if (searchTimer <= 0)
+        {
+            return new Patrolling(enemy);
         }
         else return null;
     }

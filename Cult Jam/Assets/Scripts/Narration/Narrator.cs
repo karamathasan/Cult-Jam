@@ -11,7 +11,7 @@ public class Narrator : MonoBehaviour
     private NarrativeEntry currentEntry;
     public TMP_Text headerText;
     public TMP_Text bodyText;
-    public float typingSpeed = 0.05f;
+    public float typingSpeed = 0.02f;
     private int entryIndex = 0;
     bool typingComplete = false;
     private void Start()
@@ -24,9 +24,13 @@ public class Narrator : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown("q"))
+        {
+            typingComplete = true;
+        }
+
         if ((Input.GetKeyDown("space") || Input.GetMouseButton((int)MouseButton.Left) || Input.GetKeyDown(KeyCode.Return)) && typingComplete)
         {
-            //StartCoroutine(FadeOut());
             clearText();
             entryIndex++;
             if (entryIndex < entries.Length)
@@ -36,9 +40,10 @@ public class Narrator : MonoBehaviour
             }
             else
             {
-                //SceneTransitioner.
+                SceneTransitioner.Instance.PlayNext();
             }
         }
+
     }
 
     void clearText()
