@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         direction.Normalize();
         if (direction != Vector2.zero)
         {
+            player.anim.playWalk(direction);
             player.worldSounds.Footsteps(3);
             AudioClip clip = player.sounds.getRandomWalkAudio();
             if (Time.frameCount % (Application.targetFrameRate * 64) == 0)
@@ -93,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         if (direction != Vector2.zero) 
         {
             player.worldSounds.Footsteps(12);
+            player.anim.playWalk(direction);//)might want to fix this later
             AudioClip clip = player.sounds.getRandomRunAudio();
             if (Time.frameCount % (Application.targetFrameRate * 48) == 0)
             {
@@ -129,9 +131,46 @@ public class PlayerMovement : MonoBehaviour
         if (direction != Vector2.zero)
         {
             player.worldSounds.Footsteps(1.5f);
+            player.anim.playWalk(direction);//fix this later
         }
 
         Vector2 velocityError = sneakSpeed * direction - rb.velocity;
         rb.AddForce(velocityError);
+    }
+
+
+    public Vector2 getVelocity()
+    {
+        return (Vector2)rb.velocity;
+    }
+
+    public float HorizontalVelocity()
+    {
+        return getVelocity().x;
+    }
+    public float VerticalVelocity()
+    {
+        return getVelocity().y;
+    }
+    public Vector2 getInputDirection()
+    {
+        Vector2 direction = Vector2.zero;
+        if (player.input.up())
+        {
+            direction += Vector2.up;
+        }
+        if (player.input.down())
+        {
+            direction += Vector2.down;
+        }
+        if (player.input.left())
+        {
+            direction += Vector2.left;
+        }
+        if (player.input.right())
+        {
+            direction += Vector2.right;
+        }
+        return direction;
     }
 }

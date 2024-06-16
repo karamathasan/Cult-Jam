@@ -8,11 +8,11 @@ public class PlayerStats : MonoBehaviour
     internal Player player;
 
     internal float health = 30;
-    internal bool isEvidenceFound = false;
+    internal List<int> collectedEvidenceIDs = new List<int>();
 
-    public void EvidenceFound()
+    public void EvidenceFound(int ID)
     {
-        isEvidenceFound = true;
+        collectedEvidenceIDs.Add(ID);
     }
 
     public void takeDamage(float damage)
@@ -21,8 +21,17 @@ public class PlayerStats : MonoBehaviour
         //player.movement.rb.AddForce();
         if (health <= 0)
         {
-            Debug.Log("Death");
+            Die();
         }
+    }
+    internal void Die()
+    {
+        player.anim.Die();
+        //Destroy(player.input);
+        //Destroy(player.movement);
+        //Destroy(player.interactor);
+        //Destroy(player.sounds);
+        //Destroy(player.stats);
     }
 
 

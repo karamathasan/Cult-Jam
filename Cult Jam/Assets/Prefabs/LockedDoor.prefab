@@ -333,6 +333,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7c51819dc9183694b9b4a784ab3d57d6, type: 3}
   - {fileID: 8300000, guid: de988258c212e664e9671ca9503c8562, type: 3}
   - {fileID: 8300000, guid: 27d01eb88c3e466488939f2cdc177857, type: 3}
+  DoorUnlock:
+  - {fileID: 8300000, guid: b02a353185e5e4e439e062cd83fa61ae, type: 3}
+  - {fileID: 8300000, guid: a33a532fa9128b64dbe6e4817428606e, type: 3}
+  - {fileID: 8300000, guid: 93a9601d3568f6347ab702a8dbd6e6f6, type: 3}
+  - {fileID: 8300000, guid: 5deb5b470f0712c4981f9d8b98cea0e6, type: 3}
+  - {fileID: 8300000, guid: 177daefdf8b9365448a0e65564c32eef, type: 3}
 --- !u!114 &1860321988192692228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +367,7 @@ GameObject:
   - component: {fileID: 1860321987757617732}
   - component: {fileID: 1860321987757617733}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

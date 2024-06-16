@@ -19,6 +19,7 @@ public class Curious : State
 
     public override void Init()
     {
+        SoundManager.instance.playSound(enemy.sounds.getHeardAudio(), enemy.transform.position, 10);
         memoryTimer = 2.5f;
         startupTimer = 0.5f;
     }

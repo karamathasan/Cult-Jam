@@ -10,19 +10,30 @@ public class EnemyActions : MonoBehaviour
     internal Rigidbody2D rb;
     [SerializeField]
     internal float accelerationConstant = 1.5f;
+    bool attackAvailable = true;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
     // attack player
     public void attack()
     {
-        if(Physics2D.OverlapCircle(transform.position, 2.25f).TryGetComponent(out PlayerStats s))
+        if(Physics2D.OverlapCircle(transform.position, 2.25f).TryGetComponent(out PlayerStats s) && attackAvailable)
         {
-            s.takeDamage(15);
+            s.takeDamage(30);
+            attackAvailable = false;
+            attackCooldown(5);
         }
         
+    }
+
+    IEnumerator attackCooldown(float time)
+    {
+        //attackAvailable = false;
+        yield return new WaitForSeconds(time);
+        attackAvailable = true;
     }
 
     // pathfind to player

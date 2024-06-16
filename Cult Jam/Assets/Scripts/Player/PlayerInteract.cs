@@ -10,10 +10,12 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     public List<Key> keys;
     public List<int> keyIDs;
+    public Throwable heldThrowable;// the player can only hold on to one throwable at a time
 
     private void Update()
     {
         Interaction();
+        ThrowItem();
     }
     void Interaction()
     {
@@ -35,6 +37,15 @@ public class PlayerInteract : MonoBehaviour
             {
                 closest.interact();
             }
+        }
+    }
+
+    void ThrowItem()
+    {
+        if (player.input.throwItem() && heldThrowable != null)
+        {
+            heldThrowable.Throw();
+            heldThrowable = null;
         }
     }
 }

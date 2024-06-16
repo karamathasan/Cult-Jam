@@ -31,9 +31,9 @@ public class EnemyTestFSM : FiniteStateMachine
         }
     }
 
-    private void OnGUI()
-    {
-        GUILayout.Label(currentState.name);
-    }
+    //private void OnGUI()
+    //{
+    //    GUILayout.Label(currentState.name);
+    //}
 
 }

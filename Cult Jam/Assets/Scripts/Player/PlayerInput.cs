@@ -41,4 +41,9 @@ public class PlayerInput : MonoBehaviour
     {
         return Input.GetKeyDown(KeyCode.E);
     }
+
+    public bool throwItem()
+    {
+        return Input.GetMouseButton(0);
+    }
 }

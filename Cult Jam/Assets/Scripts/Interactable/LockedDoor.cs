@@ -88,6 +88,8 @@ public class LockedDoor : Door
     public void Unlock()
     {
         doorLocked = false;
+        SoundManager.instance.playSound(sounds.getRandomDoorUnlock(),transform.position,5);
+        new WorldSound(transform.position, 10);
         doorLockedIndicator.color = new Color(0, 0, 0, 0);
     }
 }

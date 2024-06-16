@@ -21,6 +21,7 @@ public class Chasing : State
     {
         timer = 0.5f;
         enemy.actions.StartCoroutine(enemy.sensor.exposePlayer());
+        SoundManager.instance.playSound(enemy.sounds.getChaseAudio(), enemy.transform.position, 15);
     }
 
     public override void Execute()

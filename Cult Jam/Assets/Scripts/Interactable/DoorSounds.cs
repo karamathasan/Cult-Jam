@@ -15,6 +15,8 @@ public class DoorSounds : MonoBehaviour
     AudioClip[] DoorBump;
     [SerializeField]
     AudioClip[] DoorClose;
+    [SerializeField]
+    AudioClip[] DoorUnlock;
 
     public AudioClip getRandomDoorSlam()
     {
@@ -39,6 +41,11 @@ public class DoorSounds : MonoBehaviour
     public AudioClip getRandomDoorClose()
     {
         return DoorClose[Random.Range(0, DoorClose.Length)];
+    }
+
+    public AudioClip getRandomDoorUnlock()
+    {
+        return DoorUnlock[Random.Range(0, DoorUnlock.Length)];
     }
 
 }
