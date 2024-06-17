@@ -9,6 +9,6 @@ public class PlayerWorldSounds : MonoBehaviour
 
     internal void Footsteps(float range)
     {
-        WorldSound walking = new WorldSound(player.transform.position, range);
+        new WorldSound(player.transform.position, range);
     }
 }

@@ -50,7 +50,7 @@ public class Searching : State
         }
         else if (searchTimer <= 0)
         {
-            return new Patrolling(enemy);
+            return new Patrolling(enemy,enemy.fsm.cyclical);
         }
         else return null;
     }

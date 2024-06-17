@@ -7,18 +7,18 @@ using UnityEditor;
 public class NarrativeEntry : ScriptableObject
 {
     [SerializeField]
-    string month;
+    protected string month;
     [SerializeField]
-    int day;
+    protected int day;
     [SerializeField]
-    string hour;
+    protected string hour;
     [SerializeField]
-    string minute;
+    protected string minute;
     [SerializeField]
-    [TextArea(minLines:1,maxLines:5)]  
-    string body;
+    [TextArea(minLines:1,maxLines:5)]
+    protected string body;
 
-    public string getHeader()
+    public virtual string getHeader()
     {
         return "Ada S., " + (month + " " + day + ", ") + (hour + ":" + minute);
     }

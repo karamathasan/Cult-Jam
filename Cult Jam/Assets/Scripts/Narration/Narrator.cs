@@ -11,9 +11,13 @@ public class Narrator : MonoBehaviour
     private NarrativeEntry currentEntry;
     public TMP_Text headerText;
     public TMP_Text bodyText;
-    public float typingSpeed = 0.02f;
+    public GameObject continueText;
+    public float typingSpeed = 0.75f;
     private int entryIndex = 0;
     bool typingComplete = false;
+    [SerializeField]
+    AudioClip[] typewriter;
+
     private void Start()
     {
         headerText.text = "";
@@ -24,12 +28,13 @@ public class Narrator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("q"))
+        if ((Input.GetKey("space") || Input.GetMouseButton((int)MouseButton.Left)) && !typingComplete)
         {
-            typingComplete = true;
+            typingSpeed = 0.02f;
         }
+        else typingSpeed = 0.075f;
 
-        if ((Input.GetKeyDown("space") || Input.GetMouseButton((int)MouseButton.Left) || Input.GetKeyDown(KeyCode.Return)) && typingComplete)
+        if ((Input.GetKeyDown("space") || Input.GetMouseButtonDown((int)MouseButton.Left)) && typingComplete)
         {
             clearText();
             entryIndex++;
@@ -55,22 +60,28 @@ public class Narrator : MonoBehaviour
 
     IEnumerator TypeEntry()
     {
+        continueText.SetActive(false);
         typingComplete = false;
         foreach(char c in currentEntry.getHeader().ToCharArray())
         {
             headerText.text += c;
-            //SoundManager.instance.playSound();
+            SoundManager.instance.playSound2D(getRandomTypeWriter(), 0.5f);
             yield return new WaitForSeconds(typingSpeed);
         }
         yield return new WaitForSeconds(0.4f);
         foreach(char c in currentEntry.getBody().ToCharArray())
         {
             bodyText.text += c;
-            //SoundManager.instance.playSound();
 
+            SoundManager.instance.playSound2D(getRandomTypeWriter(), 0.5f);
             yield return new WaitForSeconds(typingSpeed);
         }
+        if (SceneTransitioner.Instance.NextExits())
+        {
+            continueText.GetComponent<TMP_Text>().text = "END";
+        }
         typingComplete = true;
+        continueText.SetActive(true);
     }
 
     IEnumerator FadeOut()
@@ -82,5 +93,10 @@ public class Narrator : MonoBehaviour
             headerText.color = new Color(1, 1, 1, alpha);
             yield return new WaitForSeconds(0.02f);
         }
+    }
+
+    AudioClip getRandomTypeWriter()
+    {
+        return typewriter[Random.Range(0, typewriter.Length)];
     }
 }

@@ -102,6 +102,11 @@ public class EnemySensor : MonoBehaviour, WorldSoundListener
         return (player.transform.position - transform.position).normalized;
     }
 
+    public Player getPlayer()
+    {
+        return GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
+
     public IEnumerator exposePlayer()
     {
         //Light.pointLightInnerAngle = halfFovDegrees;

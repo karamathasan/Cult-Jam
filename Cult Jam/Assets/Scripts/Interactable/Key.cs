@@ -13,5 +13,6 @@ public class Key : Interactable
         I.keys.Add(this);
         I.keyIDs.Add(keyID);
         Destroy(gameObject);
+        I.player.speech.speak("Picked up key " + keyID);
     }
 }

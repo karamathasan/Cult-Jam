@@ -75,7 +75,7 @@ public class LockedDoor : Door
         else if (!(interactor.keyIDs.Contains(doorID) && !doorOpen))
         {
             //SoundManager.instance.playSound(sounds.getRandomDoorLocked())
-            player.speech.speak("It's locked, I need the key");
+            player.speech.speak("It's locked, I need key " + doorID);
             // add locked door sounds here
         }
         

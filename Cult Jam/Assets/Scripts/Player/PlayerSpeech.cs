@@ -16,9 +16,13 @@ public class PlayerSpeech : MonoBehaviour
     }
     public void speak(string speech)
     {
+        if (speech == "" || speech == null)
+        {
+            Debug.Log("Speech was null");
+            return;
+        }
         text.text = speech;
         StartCoroutine(clearText());
-        //Debug.Log(speech);
     }
 
     IEnumerator clearText()

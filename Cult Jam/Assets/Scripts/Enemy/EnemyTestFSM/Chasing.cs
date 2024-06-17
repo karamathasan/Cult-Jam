@@ -44,9 +44,13 @@ public class Chasing : State
 
     public override State Next()
     {
-        if (!enemy.sensor.playerInSight())
+        if (!enemy.sensor.playerInSight() && !enemy.sensor.getPlayer().stats.isDead())
         {
             return new Searching(enemy, lastSeen);
+        }
+        else if (enemy.sensor.getPlayer().stats.isDead())
+        {
+            return new Patrolling(enemy, enemy.fsm.cyclical);
         }
         return null;
     }

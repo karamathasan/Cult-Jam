@@ -8,14 +8,27 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
     [SerializeField]
     private AudioSource SFX;
+    [SerializeField]
+    private AudioClip music;
+    public int count = 0;
 
-    void Start()
+
+    void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
         else Destroy(this);
+    }
+
+    private void Start()
+    {
+        if (count < 5)
+        {
+            playMusic(music);
+            count++;
+        }
     }
 
     public void playSound(AudioClip clip, Vector2 position, float volume)
@@ -27,5 +40,26 @@ public class SoundManager : MonoBehaviour
         float length = source.clip.length;
         source.Play();
         Destroy(source.gameObject, length);
+    }
+
+    public void playSound2D(AudioClip clip, float volume)
+    {
+        AudioSource source = Instantiate(SFX, Vector2.zero, Quaternion.identity);
+        source.clip = clip;
+        source.volume = volume;
+        source.spatialBlend = 0;
+        float length = source.clip.length;
+        source.Play();
+        Destroy(source.gameObject, length);
+    }
+
+    public void playMusic(AudioClip music)
+    {
+        AudioSource source = Instantiate(SFX, Vector2.zero, Quaternion.identity);
+        source.clip = music;
+        source.volume = 0.15f;
+        source.spatialBlend = 0;
+        source.loop = true;
+        source.Play();
     }
 }

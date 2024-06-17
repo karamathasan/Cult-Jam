@@ -8,10 +8,12 @@ public class EnemyTestFSM : FiniteStateMachine
     internal Enemy enemy;
     [SerializeField]
     public Vector2[] wayPoints;
+    [SerializeField]
+    public bool cyclical = true;
 
     void Start()
     {
-        initState = new Patrolling(enemy);
+        initState = new Patrolling(enemy,cyclical);
         currentState = initState;
         currentState.Init();
     }
@@ -35,5 +37,15 @@ public class EnemyTestFSM : FiniteStateMachine
     //{
     //    GUILayout.Label(currentState.name);
     //}
+
+    private void OnDrawGizmos()
+    {
+        foreach(Vector2 wp in wayPoints)
+        {
+            //Gizmos.DrawIcon(wp, "way point");
+            Gizmos.color = new Color(0, 0.5f, 1);
+            Gizmos.DrawSphere(wp, 0.2f); 
+        }
+    }
 
 }

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NarrationScene.unity
     guid: 07af7d4b409beb5488ea81d2170683c5
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/EvidenceSearch.unity
+    guid: af3ffa74b910a75458ca170e9664a1a2
+  - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: d1681263e1fe0cf43b9b27bbbe6b4859
   m_configObjects: {}

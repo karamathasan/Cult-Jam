@@ -13,6 +13,7 @@ public class Evidence : Interactable
     public override void interact()
     {
         PlayerStats s = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        s.player.speech.speak("Got one, " + (TotalEvidence - s.collectedEvidenceIDs.Count) + " left");
         s.EvidenceFound(ID);
         Destroy(gameObject);
     }   

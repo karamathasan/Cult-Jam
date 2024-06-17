@@ -59,11 +59,11 @@ public class PlayerMovement : MonoBehaviour
         if (direction != Vector2.zero)
         {
             player.anim.playWalk(direction);
-            player.worldSounds.Footsteps(3);
+            player.worldSounds.Footsteps(6);
             AudioClip clip = player.sounds.getRandomWalkAudio();
             if (Time.frameCount % (Application.targetFrameRate * 64) == 0)
             {
-                SoundManager.instance.playSound(clip, transform.position, 0.1f);
+                SoundManager.instance.playSound2D(clip, 0.15f);
             }
         }
 
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             AudioClip clip = player.sounds.getRandomRunAudio();
             if (Time.frameCount % (Application.targetFrameRate * 48) == 0)
             {
-                SoundManager.instance.playSound(clip, transform.position, 0.25f);
+                SoundManager.instance.playSound2D(clip, 0.25f);
             }
         }
 

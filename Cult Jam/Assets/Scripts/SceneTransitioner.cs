@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,6 +42,17 @@ public class SceneTransitioner : MonoBehaviour
     {
         // check for final scene
         //Debug.Log(SceneManager.GetActiveScene().buildIndex);
-        ChangeScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
+        {
+            ChangeScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else Application.Quit();
     }
+
+    public bool NextExits()
+    {
+        return SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings;
+    }
+
+
 }

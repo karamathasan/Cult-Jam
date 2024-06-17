@@ -12,37 +12,44 @@ public class PlayerAnimator : MonoBehaviour
 
     private void Update()
     {
+        if (!player.stats.isDead())
+        {
+            playIdle();
+        }
         //playWalk();
-        playIdle();
         //playSprint();
     }
 
     internal void playWalk(Vector2 input)
     {
+        if (player.stats.isDead())
+        {
+            return;
+        }
         input.Normalize();
         if (Mathf.Abs(input.x) > 0)
         {
             if (input.x > 0)
             {
-                anim.Play("WalkRight");
+                ChangeAnim("WalkRight");
             }
             else if (input.x < 0)
             {
-                anim.Play("WalkLeft");
+                ChangeAnim("WalkLeft");
             }
         }
         else if (Mathf.Abs(input.y) > 0)
         {
             if (input.y > 0)
             {
-                anim.Play("WalkUp");
+                ChangeAnim("WalkUp");
             }
             else if (input.y < 0)
             {
-                anim.Play("WalkDown");
+                ChangeAnim("WalkDown");
             }
         }
-        //else anim.Play("Idle");
+        //else ChangeAnim("Idle");
     }
 
     internal void playSprint()
@@ -78,18 +85,19 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (player.movement.getInputDirection() == Vector2.zero)
         {
-            anim.Play("Idle");
+            ChangeAnim("Idle");
         }
     }
 
     internal void Die()
     {
-        anim.Play("Death");
+        ChangeAnim("Death");
     }
 
     public void ChangeAnim(string newAnim)
     {
-        if (currentAnim.Equals(newAnim))
+        //if (currentAnim.Equals(newAnim))
+        if (currentAnim == newAnim)
         {
             return;
         }
