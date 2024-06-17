@@ -24,9 +24,8 @@ public class EnemyActions : MonoBehaviour
         {
             s.takeDamage(30);
             attackAvailable = false;
-            attackCooldown(5);
+            attackCooldown(0.5f);
         }
-        
     }
 
     IEnumerator attackCooldown(float time)
@@ -41,7 +40,6 @@ public class EnemyActions : MonoBehaviour
     public void walk(Vector2 direction)
     {
         direction.Normalize();
-        //rb.velocity = enemy.stats.walkSpeed * direction;
         Vector2 velocityError = direction * enemy.stats.walkSpeed - rb.velocity;
         rb.AddForce(accelerationConstant * velocityError);
     }
@@ -52,11 +50,6 @@ public class EnemyActions : MonoBehaviour
         direction.Normalize();
         Vector2 velocityError = direction * enemy.stats.runSpeed - rb.velocity;
         rb.AddForce(accelerationConstant * velocityError);
-        AudioClip clip = enemy.sounds.getRandomRunAudio();
-        if (Time.frameCount % (Application.targetFrameRate * 32) == 0)
-        {
-            SoundManager.instance.playSound(clip, transform.position, 10);
-        }
     }
 
     public void walkToPoint(Vector2 pos)
@@ -70,13 +63,5 @@ public class EnemyActions : MonoBehaviour
         //Vector2 force = Vector2.ClampMagnitude(positionError, velocityError.magnitude);
         //float dampingFactor = 0.2f;
         //Vector2 damp =  dampingFactor * positionError.normalized * 1/(positionError.magnitude + Mathf.Epsilon);
-
-        //rb.AddForce(force - damp);
-
-        AudioClip clip = enemy.sounds.getRandomWalkAudio();
-        if(Time.frameCount % (Application.targetFrameRate * 128) == 0)
-        {
-            SoundManager.instance.playSound(clip, transform.position, 10);
-        }
     }
 }

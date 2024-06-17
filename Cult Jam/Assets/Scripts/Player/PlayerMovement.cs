@@ -14,11 +14,15 @@ public class PlayerMovement : MonoBehaviour
     internal float runSpeed = 2;
     [SerializeField]
     internal float sneakSpeed = 0.3f;
-
+    float accelerationConstant = 2f;
+    float walkTimer = 0;
+    float walkPeriod = 0.5f;
+    float runTimer = 0;
+    float runPeriod = 0.2f;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();    
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -33,7 +37,11 @@ public class PlayerMovement : MonoBehaviour
             Sneak();
             //return;
         }
-        else Walk();
+        else
+        {
+            Walk();
+
+        }
     }
 
     void Walk()
@@ -60,15 +68,21 @@ public class PlayerMovement : MonoBehaviour
         {
             player.anim.playWalk(direction);
             player.worldSounds.Footsteps(6);
-            AudioClip clip = player.sounds.getRandomWalkAudio();
-            if (Time.frameCount % (Application.targetFrameRate * 64) == 0)
+            if (walkTimer > 0)
             {
+                walkTimer -= Time.deltaTime;
+            }
+            if (walkTimer <= 0)
+            {
+                walkTimer = walkPeriod;
+                AudioClip clip = player.sounds.getRandomWalkAudio();
                 SoundManager.instance.playSound2D(clip, 0.15f);
             }
         }
 
+
         Vector2 velocityError = walkSpeed * direction - rb.velocity;
-        rb.AddForce(velocityError);
+        rb.AddForce(accelerationConstant * velocityError);
     }
 
     void Run()
@@ -94,16 +108,21 @@ public class PlayerMovement : MonoBehaviour
         if (direction != Vector2.zero) 
         {
             player.worldSounds.Footsteps(12);
-            player.anim.playWalk(direction);//)might want to fix this later
-            AudioClip clip = player.sounds.getRandomRunAudio();
-            if (Time.frameCount % (Application.targetFrameRate * 48) == 0)
+            player.anim.playWalk(direction);
+            if (runTimer > 0)
             {
-                SoundManager.instance.playSound2D(clip, 0.25f);
+                runTimer -= Time.deltaTime;
+            }
+            if (runTimer <= 0)
+            {
+                runTimer = runPeriod;
+                AudioClip clip = player.sounds.getRandomWalkAudio();
+                SoundManager.instance.playSound2D(clip, 0.15f);
             }
         }
 
         Vector2 velocityError = runSpeed * direction - rb.velocity;
-        rb.AddForce( 2 * velocityError);
+        rb.AddForce( accelerationConstant * velocityError);
 
 
     }
@@ -132,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
         {
             player.worldSounds.Footsteps(1.5f);
             player.anim.playWalk(direction);//fix this later
+
         }
 
         Vector2 velocityError = sneakSpeed * direction - rb.velocity;
@@ -173,4 +193,7 @@ public class PlayerMovement : MonoBehaviour
         }
         return direction;
     }
+
+
+
 }

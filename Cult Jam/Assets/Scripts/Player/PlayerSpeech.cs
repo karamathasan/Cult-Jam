@@ -25,6 +25,25 @@ public class PlayerSpeech : MonoBehaviour
         StartCoroutine(clearText());
     }
 
+    public void speak(string[] sentences)
+    {
+        StartCoroutine(speakSentences(sentences));
+    }
+
+    IEnumerator speakSentences(string[] sentences)
+    {
+        for (int i = 0; i < sentences.Length; i++)
+        {
+            if (!(sentences[i] == "" || sentences[i] == null))
+            {
+                text.text = sentences[i];
+                yield return new WaitForSeconds(1.5f);
+                text.text = "";
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
     IEnumerator clearText()
     {
         yield return new WaitForSeconds(1.5f);

@@ -23,6 +23,11 @@ public class EnemyTestFSM : FiniteStateMachine
         Evaluate();
     }
 
+    private void FixedUpdate()
+    {
+        currentState.FixedExecute();
+    }
+
     public override void Evaluate()
     {
         currentState.Execute();
@@ -42,7 +47,6 @@ public class EnemyTestFSM : FiniteStateMachine
     {
         foreach(Vector2 wp in wayPoints)
         {
-            //Gizmos.DrawIcon(wp, "way point");
             Gizmos.color = new Color(0, 0.5f, 1);
             Gizmos.DrawSphere(wp, 0.2f); 
         }

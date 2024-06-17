@@ -10,7 +10,6 @@ public class SoundManager : MonoBehaviour
     private AudioSource SFX;
     [SerializeField]
     private AudioClip music;
-    public int count = 0;
 
 
     void Awake()
@@ -24,11 +23,7 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
-        if (count < 5)
-        {
-            playMusic(music);
-            count++;
-        }
+        playMusic(music);
     }
 
     public void playSound(AudioClip clip, Vector2 position, float volume)

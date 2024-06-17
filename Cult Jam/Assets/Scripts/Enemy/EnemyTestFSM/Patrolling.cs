@@ -10,6 +10,8 @@ public class Patrolling : State
     private int waypointIndex = 0;
     [SerializeField]
     public bool cyclical = true;
+    float stepTimer = 0;
+    float stepPeriod = 0.75f;
     
     public Patrolling(Enemy enemy, bool cyclical = true)
     {
@@ -29,7 +31,7 @@ public class Patrolling : State
         if(waypoints.Length == 1)
         {
             enemy.actions.walkToPoint(waypoints[0]);
-            enemy.transform.right = new Vector3(0, 0 - 90);
+            enemy.transform.right = new Vector3(0, -90);
         }
         if (!cyclical && waypoints.Length > 0)
         {
@@ -45,9 +47,9 @@ public class Patrolling : State
                 }
                 j += direction;
                 waypoints[i] = copy[j];
-
             }
         }
+
     }
 
     public override void Execute()
@@ -61,6 +63,23 @@ public class Patrolling : State
         if ((Vector2)enemy.transform.position == waypoints[waypointIndex])
         {
             CycleThroughWaypoints();
+        }
+        updateTimer();
+    }
+
+    void updateTimer()
+    {
+        if (stepTimer > 0)
+        {
+            stepTimer -= Time.deltaTime;
+        }
+        if (stepTimer <= 0)
+        {
+            stepTimer = stepPeriod;
+            if (Vector2.Distance(enemy.sensor.getPlayerPosition(), enemy.transform.position) < 30)
+            {
+                SoundManager.instance.playSound(enemy.sounds.getRandomWalkAudio(), enemy.transform.position, 10);
+            }
         }
     }
 

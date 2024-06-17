@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour
         Destroy(player.movement);
         Destroy(player.interactor);
         Destroy(player.sounds);
+        Evidence.TotalEvidence = 0;
         gameOver.gameObject.SetActive(true);
         
         //Destroy(player.stats);

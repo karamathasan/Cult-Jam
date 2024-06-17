@@ -11,6 +11,7 @@ public class SceneTransitioner : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
         if (Instance == null)
         {
             Instance = this;
